@@ -135,6 +135,40 @@
                   console.log(e.message);
               })
         </script>
+        <script type="text/javascript">
+            getSubscriptionCount()
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
 
+            function getSubscriptionCount(){
+                var name = $("input[name=name]").val();
+                var password = $("input[name=password]").val();
+                var email = $("input[name=email]").val();
+
+                $.ajax({
+                    type:'GET',
+                    url:"{{ url('/subscriptions/count') }}",
+                    success:function(data){
+                        console.log(data.subscription_count)
+                    }
+                });
+                {{--var name = $("input[name=name]").val();--}}
+                {{--var password = $("input[name=password]").val();--}}
+                {{--var email = $("input[name=email]").val();--}}
+
+                {{--$.ajax({--}}
+                {{--    type:'POST',--}}
+                {{--    url:"{{ route('ajaxRequest.post') }}",--}}
+                {{--    data:{name:name, password:password, email:email},--}}
+                {{--    success:function(data){--}}
+                {{--        alert(data.success);--}}
+                {{--    }--}}
+                {{--});--}}
+
+            };
+        </script>
     </body>
 </html>

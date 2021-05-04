@@ -21,5 +21,11 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/samples/form', [App\Http\Controllers\Samples\SamplesController::class, 'sampleForm'])->name('sample_form');
+Route::get('/subscriptions/count', function () {
+    return response()->json([
+        'success' => true,
+        'subscription_count' => \App\Models\Subscription::count()
+    ]);
+});
 
 Route::post('/subscribe', [App\Http\Controllers\Samples\SubscriptionController::class, 'subscribe'])->name('subscribe');
